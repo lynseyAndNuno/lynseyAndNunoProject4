@@ -5,11 +5,10 @@ const app = {};
 
 // Collect user input
 app.collectInfo = function() {
-    $('input').on("click", function(e) {
+    $('form').on("submit", function(e) {
         e.preventDefault();
         const inputVal = $('#search').val();
         const parsedInput = inputVal.replace(/\s/g, '_');
-        console.log(parsedInput);
 
         app.getInfo(parsedInput);
     });
@@ -27,9 +26,25 @@ app.getInfo = function (stationSearch) {
             reqUrl: `${app.baseUrl}/${stationSearch}.json`,
         }
     }).then(function(data) {
-        console.log(data);
+        data.stops.forEach(function(stop) {
+            if (stop.routes.length !== 0) {
+                console.log(stop.routes);
+                app.getRoutes(stop.routes);
+            }
+        });
     });
 }
+// make a function that takes the data.stops as a parameter
+// for each route on the stops, pull the route.name to display
+// use route.name to build html element to append to selection
+
+app.getRoutes = function(routes) {
+    routes.forEach(function(route) {
+        const htmlToAppend = `<option>${route.name}</option>`;
+        $('select').append(htmlToAppend);
+    })
+}
+
 
 
 // Display data on the page
