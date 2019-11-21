@@ -1,7 +1,57 @@
-header {
-    background-image: ;
+body {
+    background-image: url(../assets/IMG_4574_Original.jpg) ;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 95vh;
+    background-position: 100% 70%;
 }
-  
+
+header {
+    background-color: rgba(0, 0, 0, 0.7);
+    min-height: 95vh;
+    .hero {
+        background-color: rgba(0, 0, 0, 0.6);
+        h1 {
+            font-size: 4.5rem;
+            color: #a32a2e;
+            text-align: center;
+            margin: 0;
+            padding: 100px;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            fieldset {
+                border: none;
+                label {
+                    color: white;
+                    font-size: 3rem;
+                }
+                #search {
+                    font-size: 2rem;
+                    width: 40%;
+                    border-radius: 10px;
+                }
+            }
+        }
+    };
+    .results {  
+        background-color: rgba(0, 0, 0, 0.6);
+        p {
+            color: white;
+            font-size: 3rem;
+            margin: 0;
+            padding: 50px 0;
+        }
+    };
+}
+
+footer {
+    background: black;
+    p {
+    font-size: 2rem;
+    color: #a32a2e;
+    text-align: center;
+    margin: 0;
+    padding: 9px;
+    }
+}

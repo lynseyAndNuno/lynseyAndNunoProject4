@@ -15,8 +15,8 @@ Once we have the inputs from the user we will pull the data from the API call to
 
 // Stretch Goals!
 
-1. pull current weather from weather API
-2. check if raining or snowing
-3. if raining, add 50% to commute time
-4. if snowing, add 100% to commute time.
-5. display new times for user with funny message about how garbage the ttc is.
+1. Pull current weather from weather API
+2. Check if raining or snowing
+3. If raining, add 50% to commute time
+4. If snowing, add 100% to commute time.
+5. Display new times for user with funny message about how garbage the TTC is.

@@ -19,9 +19,9 @@ img {
     display: block;
 }
 
-h1 {
+// h1 {
    
-}
+// }
 
 
 /* Skip-line for accessibility */
@@ -30,8 +30,8 @@ h1 {
   left: -1000px;
   top: 5px;
   z-index: 999;
-  background: $baseBackgroundColor;
-  color: $baseBackgroundColor;
+  background: black;
+  color: black;
 }
 
 .skipLink:focus {
