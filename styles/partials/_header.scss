@@ -1,16 +1,17 @@
 body {
-    background-image: url(../assets/IMG_4574_Original.jpg) ;
+    background-image: url(../assets/backgroundImagel.jpg) ;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 100% 70%;
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.4);
     min-height: 95vh;
     .hero {
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.4);
         h1 {
+            font-family: 'Tomorrow', sans-serif;
             font-size: 4.5rem;
             color: #a32a2e;
             text-align: center;
@@ -18,27 +19,35 @@ header {
             padding: 100px;
         }
         form {
-            display: flex;
-            flex-wrap: wrap;
             fieldset {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
                 border: none;
                 label {
-                    color: white;
+                    font-family: 'Tomorrow', sans-serif;
                     font-size: 3rem;
+                    color: white;
+                    padding-bottom: 20px;
                 }
-                #search {
+                #search,
+                select, 
+                input {
+                    font-family: 'Tomorrow', sans-serif;
                     font-size: 2rem;
                     width: 40%;
                     border-radius: 10px;
+                    margin-bottom: 20px;
                 }
             }
         }
     };
     .results {  
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.4);
         p {
-            color: white;
+            font-family: 'Tomorrow', sans-serif;
             font-size: 3rem;
+            color: white;
             margin: 0;
             padding: 50px 0;
         }
@@ -48,10 +57,11 @@ header {
 footer {
     background: black;
     p {
-    font-size: 2rem;
-    color: #a32a2e;
-    text-align: center;
-    margin: 0;
-    padding: 9px;
+        font-family: 'Tomorrow', sans-serif;
+        font-size: 2rem;
+        color: #a32a2e;
+        text-align: center;
+        margin: 0;
+        padding: 9px;
     }
 }

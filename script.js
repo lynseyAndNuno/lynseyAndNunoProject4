@@ -16,48 +16,32 @@ app.collectInfo = function() {
 }
 
 // Make AJAX request with user inputted data
-app.baseUrl = "http://myttc.ca";
+app.baseUrl = "https://myttc.ca";
 
-// $.ajax({
-//     url: 'http://proxy.hackeryou.com',
-//     dataType: 'json',
-//     method: 'GET',
-//     data: {
-//         reqUrl: 'http://myttc.ca/',
-//         params: {
-//             p: `${stationSeach}`,
-//         },
-//         // proxyHeaders: {
-//         //     'Some-Header': 'goes here'
-//         // },
-//         xmlToJSON: false,
-//         useCache: false
-//     }
-// }).then(function(data) {
-// 	console.log(data);
-// });
-
-app.getInfo = function(stationSearch) {
+app.getInfo = function (stationSearch) {
     $.ajax({
-        url: `${app.baseUrl}/${stationSearch}`,
+        url: 'http://proxy.hackeryou.com',
+        dataType: 'json',
         method: 'GET',
-        dataType: 'json'
+        data: {
+            reqUrl: `${app.baseUrl}/${stationSearch}.json`,
+        }
     }).then(function(data) {
         console.log(data);
     });
-};
+}
 
 
 // Display data on the page
-app.displayInfo = function () {
+app.displayInfo = function() {
 
 }
 
 // Start app
-app.init = function () {
+app.init = function() {
 app.collectInfo();
 }
 
-$(function () {
+$(function() {
     app.init();
 });
