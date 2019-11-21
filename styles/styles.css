@@ -336,6 +336,11 @@ header .results p {
   padding: 50px 0;
 }
 
+header .results li {
+  color: white;
+  font-size: 2rem;
+}
+
 footer {
   background: black;
 }

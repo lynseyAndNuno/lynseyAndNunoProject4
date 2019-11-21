@@ -1,9 +1,9 @@
 // JS file starts here 
 
-// Create app namespace to hold all methods
+// App namespace to hold all methods
 const app = {};
 
-// Collect user input
+// To collect user input
 app.collectInfo = function() {
     $('form.search').on("submit", function(e) {
         e.preventDefault();
@@ -42,10 +42,7 @@ app.getRoutes = function(routes) {
     })
 }
 
-//route name has to be the index of routes
 app.getTimes = function(stops) {
-    //take the routeName selection from drop-down
-    //correlate with routeName.stop_times
     $('form.finalSubmit').on("submit", function(e){
         e.preventDefault();
         const time = parseInt($('#time').val(), 10);
@@ -55,7 +52,7 @@ app.getTimes = function(stops) {
                 stop.routes.forEach(function(route){
                     if (route.name === routeTaken) {
                         const nextDepartures = route.stop_times;
-                        app.displayInfo(nextDepartures);
+                        app.displayInfo(nextDepartures, time);
                     }
                 })
             }
@@ -63,16 +60,28 @@ app.getTimes = function(stops) {
     })
 }
 
-
-
 // Display data on the page
-app.displayInfo = function(comingDepartures) {
+app.displayInfo = function(times, arrival) {
+    const commuteInSeconds = arrival * 60;
 
+    $('.results').append(`<p>The next departure time is:</p><ul></ul>`);
+    for(let i = 0; i <= 2; i++) {
+        $('ul').append(`<li>${times[i].departure_time}</li>`);
+    }
+
+    $('.results').append(`<p>You will arrive at:</p><ul></ul>`)
+    for(let i = 0; i <= 2; i++) {
+        const arrivalTime = new Date((commuteInSeconds + times[i].departure_timestamp)*1000)
+        const hours = arrivalTime.getUTCHours();
+        const minutes = arrivalTime.getUTCMinutes();
+
+        $('ul:nth-of-type(2)').append(`<li>${hours}:${minutes}</li>`)
+    }   
 }
 
 // Start app
 app.init = function() {
-app.collectInfo();
+    app.collectInfo();
 }
 
 $(function() {
