@@ -8,6 +8,7 @@ app.collectInfo = function() {
     $('form.search').on("submit", function(e) {
         e.preventDefault();
         const inputVal = $('#search').val();
+        // api call requires a string with underscores between words.
         const parsedInput = inputVal.replace(/\s/g, '_');
 
         app.getInfo(parsedInput);
@@ -17,6 +18,7 @@ app.collectInfo = function() {
 // Make AJAX request with user inputted data
 app.baseUrl = "https://myttc.ca";
 
+// wow look it's an api call!
 app.getInfo = function (stationSearch) {
     $.ajax({
         url: 'http://proxy.hackeryou.com',
@@ -26,6 +28,8 @@ app.getInfo = function (stationSearch) {
             reqUrl: `${app.baseUrl}/${stationSearch}.json`,
         }
     }).then(function(data) {
+        // return data lists 'stops' that don't actually have routes
+        // we don't want those stops.
         data.stops.forEach(function(stop) {
             if (stop.routes.length !== 0) {
                 app.getRoutes(stop.routes);
@@ -35,6 +39,7 @@ app.getInfo = function (stationSearch) {
     });
 }
 
+// pulls route name from stops data object and appends to drop down menu
 app.getRoutes = function(routes) {
     routes.forEach(function(route) {
         const htmlToAppend = `<option>${route.name}</option>`;
@@ -42,6 +47,7 @@ app.getRoutes = function(routes) {
     })
 }
 
+// pulls departure time from stops data object and passes to display function
 app.getTimes = function(stops) {
     $('form.finalSubmit').on("submit", function(e){
         e.preventDefault();

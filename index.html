@@ -11,36 +11,41 @@
 </head>
 <body>
     <header>
-        <div class="hero wrapper">
+        <div class="wrapper">
             <h1>Am I Gonna be Late?</h1>
-
-            <form action="" class="search">
-                <fieldset>
-                    <label for="departure">Where are you leaving from?</label>
-                    <input type="search" name="departure" id="search">
-                    
-                    <button type="submit">Search!</button>
-                </fieldset>
-            </form>
-            
-            <form action="" class="finalSubmit">
-                <fieldset>
-                    <label for="route">What is your route?</label>
-                    <select name="route" id="route"></select>
-                    
-                    <label for="time">Enter usual commute time in minutes.</label>
-                    <input type="text" name="time" id="time">
-
-                    <button type="submit">Submit</button>
-                </fieldset>
-            </form>
-        </div>
-
-        <div class="results wrapper">
-            <!-- <ul class="departureTime">
-            </ul> -->
         </div>
     </header>
+    <main>
+        <div class="wrapper">
+            <section class="inputs">
+                <form action="" class="search">
+                    <fieldset>
+                        <label for="departure">Where are you leaving from?</label>
+                        <div class="searchButton">
+                            <input type="search" name="departure" id="search">
+                            <button type="submit">Search!</button>
+                        </div>
+                        <p class="form-tooltip">Please specify if starting from a station (e.g. "Eglinton Station"). You can also search by intersection with a stop (e.g. "Yonge and Queen")</p>
+                    </fieldset>
+                </form>
+                
+                <form action="" class="finalSubmit">
+                    <fieldset>
+                        <label for="route">What is your route?</label>
+                        <select name="route" id="route"></select>
+                        
+                        <label for="time">Enter usual commute time in minutes.</label>
+                        <input type="text" name="time" id="time">
+                        
+                        <button type="submit">Submit</button>
+                    </fieldset>
+                </form>
+            </section>
+            <section class="results">
+                <!-- empty section for departures and arrivals! -->
+            </section>
+        </div>
+    </main>
 
     <footer>
         <p class="wrapper">Created by Lynsey and Nuno 2019</p>

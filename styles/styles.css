@@ -246,7 +246,19 @@ body {
 .wrapper {
   max-width: 1080px;
   width: 80%;
+  height: 100%;
   margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 img {
@@ -277,27 +289,57 @@ body {
 }
 
 header {
-  background-color: rgba(0, 0, 0, 0.4);
-  min-height: 95vh;
+  height: 20vh;
 }
 
-header .hero {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-header .hero h1 {
+header h1 {
+  display: inline-block;
   font-family: 'Tomorrow', sans-serif;
   font-size: 4.5rem;
-  color: #a32a2e;
+  color: yellow;
   text-align: center;
-  margin: 0;
-  padding: 100px;
+  margin: 50px 0;
+  position: relative;
+  text-shadow: 0px 0px 2px white;
 }
 
-header .hero form fieldset {
+header h1::before, header h1::after {
+  content: '';
+  position: absolute;
+  top: 15px;
+  display: block;
+  height: 25px;
+  width: 25px;
+  background-color: blue;
+  -webkit-box-shadow: 0px 0px 5px white;
+          box-shadow: 0px 0px 5px white;
+  border-radius: 50%;
+}
+
+header h1::before {
+  left: -60px;
+}
+
+header h1::after {
+  right: -60px;
+}
+
+.inputs {
+  height: 75vh;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+}
+
+form fieldset {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-orient: vertical;
@@ -307,28 +349,33 @@ header .hero form fieldset {
   border: none;
 }
 
-header .hero form fieldset label {
+form fieldset label {
   font-family: 'Tomorrow', sans-serif;
   font-size: 3rem;
   color: white;
   padding-bottom: 20px;
 }
 
-header .hero form fieldset #search,
-header .hero form fieldset select,
-header .hero form fieldset input {
+form fieldset #search,
+form fieldset select,
+form fieldset input {
   font-family: 'Tomorrow', sans-serif;
   font-size: 2rem;
-  width: 40%;
   border-radius: 10px;
   margin-bottom: 20px;
 }
 
-header .results {
+.searchButton {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.results {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-header .results p {
+.results p {
   font-family: 'Tomorrow', sans-serif;
   font-size: 3rem;
   color: white;
@@ -336,13 +383,14 @@ header .results p {
   padding: 50px 0;
 }
 
-header .results li {
+.results li {
   color: white;
   font-size: 2rem;
 }
 
 footer {
   background: black;
+  height: 5vh;
 }
 
 footer p {
@@ -351,6 +399,6 @@ footer p {
   color: #a32a2e;
   text-align: center;
   margin: 0;
-  padding: 9px;
+  padding: 0;
 }
 /*# sourceMappingURL=styles.css.map */

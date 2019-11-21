@@ -6,70 +6,34 @@ body {
 }
 
 header {
-    background-color: rgba(0, 0, 0, 0.4);
-    min-height: 95vh;
-    .hero {
-        background-color: rgba(0, 0, 0, 0.4);
-        h1 {
-            font-family: 'Tomorrow', sans-serif;
-            font-size: 4.5rem;
-            color: #a32a2e;
-            text-align: center;
-            margin: 0;
-            padding: 100px;
-        }
-        form {
-            fieldset {
-                display: flex;
-                flex-wrap: wrap;
-                flex-direction: column;
-                border: none;
-                label {
-                    font-family: 'Tomorrow', sans-serif;
-                    font-size: 3rem;
-                    color: white;
-                    padding-bottom: 20px;
-                }
-                #search,
-                select, 
-                input {
-                    font-family: 'Tomorrow', sans-serif;
-                    font-size: 2rem;
-                    width: 40%;
-                    border-radius: 10px;
-                    margin-bottom: 20px;
-                }
-            }
-        }
-    };
-    .results {  
-        background-color: rgba(0, 0, 0, 0.4);
-        p {
-            font-family: 'Tomorrow', sans-serif;
-            font-size: 3rem;
-            color: white;
-            margin: 0;
-            padding: 50px 0;
-        }
-        ul {
-            // display: flex;
-            // padding: 20%;
-        }
-        li {
-            color: white;
-            font-size: 2rem;
-        }
-    };
-}
-
-footer {
-    background: black;
-    p {
+    // background-color: rgba(0, 0, 0, 0.4);
+    height: 20vh;
+    h1 {
+        display: inline-block;
         font-family: 'Tomorrow', sans-serif;
-        font-size: 2rem;
-        color: #a32a2e;
+        font-size: 4.5rem;
+        color: yellow;
         text-align: center;
-        margin: 0;
-        padding: 9px;
+        margin: 50px 0;
+        position: relative;
+        text-shadow: 0px 0px 2px white;
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            display: block;
+            height: 25px;
+            width: 25px;
+            background-color: blue;
+            box-shadow: 0px 0px 5px white;
+            border-radius: 50%;
+        }
+        &::before {
+            left: -60px;
+        }
+        &::after {
+            right: -60px;
+        }
     }
 }

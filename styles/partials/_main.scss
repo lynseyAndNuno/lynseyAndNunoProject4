@@ -1,0 +1,61 @@
+.inputs {
+  height: 75vh;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+  fieldset {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: none;
+    label {
+      font-family: 'Tomorrow', sans-serif;
+      font-size: 3rem;
+      color: white;
+      padding-bottom: 20px;
+    }
+    #search,
+    select, 
+    input {
+      font-family: 'Tomorrow', sans-serif;
+      font-size: 2rem;
+      // width: 40%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+    // #search:focus + .form-tooltip {
+    //   display: block;
+    // }
+  }
+  // .form-tooltip {
+  //   display: none;
+  //   overflow: hidden;
+  //   height: 0;
+  // }
+}
+
+.searchButton {
+  display: flex;
+}
+
+.results {  
+  background-color: rgba(0, 0, 0, 0.4);
+  p {
+      font-family: 'Tomorrow', sans-serif;
+      font-size: 3rem;
+      color: white;
+      margin: 0;
+      padding: 50px 0;
+  }
+  ul {
+      // display: flex;
+      // padding: 20%;
+  }
+  li {
+      color: white;
+      font-size: 2rem;
+  }
+}
