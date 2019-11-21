@@ -5,7 +5,7 @@ const app = {};
 
 // Collect user input
 app.collectInfo = function() {
-    $('form').on("submit", function(e) {
+    $('form.search').on("submit", function(e) {
         e.preventDefault();
         const inputVal = $('#search').val();
         const parsedInput = inputVal.replace(/\s/g, '_');
@@ -28,15 +28,12 @@ app.getInfo = function (stationSearch) {
     }).then(function(data) {
         data.stops.forEach(function(stop) {
             if (stop.routes.length !== 0) {
-                console.log(stop.routes);
                 app.getRoutes(stop.routes);
             }
         });
+        app.getTimes(data.stops);
     });
 }
-// make a function that takes the data.stops as a parameter
-// for each route on the stops, pull the route.name to display
-// use route.name to build html element to append to selection
 
 app.getRoutes = function(routes) {
     routes.forEach(function(route) {
@@ -45,10 +42,31 @@ app.getRoutes = function(routes) {
     })
 }
 
+//route name has to be the index of routes
+app.getTimes = function(stops) {
+    //take the routeName selection from drop-down
+    //correlate with routeName.stop_times
+    $('form.finalSubmit').on("submit", function(e){
+        e.preventDefault();
+        const time = parseInt($('#time').val(), 10);
+        const routeTaken = $('#route').val();
+        stops.forEach(function(stop) {
+            if (stop.routes.length !== 0) {
+                stop.routes.forEach(function(route){
+                    if (route.name === routeTaken) {
+                        const nextDepartures = route.stop_times;
+                        app.displayInfo(nextDepartures);
+                    }
+                })
+            }
+        })
+    })
+}
+
 
 
 // Display data on the page
-app.displayInfo = function() {
+app.displayInfo = function(comingDepartures) {
 
 }
 

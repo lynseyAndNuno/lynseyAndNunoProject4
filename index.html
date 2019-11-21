@@ -13,17 +13,21 @@
     <header>
         <div class="hero wrapper">
             <h1>Am I Gonna be Late?</h1>
+
+            <form action="" class="search">
+                <label for="departure">Where are you leaving from?</label>
+                <input type="search" name="departure" id="search">
+                <button type="submit">Search!</button>
+            </form>
             
-            <form action="">
+            <form action="" class="finalSubmit">
                 <fieldset>
-                    <label for="departure">Where are you leaving from?</label>
-                    <input type="search" name="departure" id="search">
                     
                     <label for="route">What is your route?</label>
-                    <select name="route" id=""></select>
+                    <select name="route" id="route"></select>
                     
                     <label for="time">Enter usual commute time in minutes.</label>
-                    <input type="text" name="time">
+                    <input type="text" name="time" id="time">
 
                     <button type="submit">Submit</button>
                 </fieldset>
