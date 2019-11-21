@@ -77,11 +77,18 @@ app.displayInfo = function(times, arrival) {
 
     $('.results').append(`<p>You will arrive at:</p><ul></ul>`)
     for(let i = 0; i <= 2; i++) {
-        const arrivalTime = new Date((commuteInSeconds + times[i].departure_timestamp)*1000)
-        const hours = arrivalTime.getUTCHours();
+        const unixTime = (commuteInSeconds + times[i].departure_timestamp - 18000)*1000;
+        const arrivalTime = new Date(unixTime);
+        const hours = (arrivalTime.getUTCHours()) % 12;
         const minutes = arrivalTime.getUTCMinutes();
 
-        $('ul:nth-of-type(2)').append(`<li>${hours}:${minutes}</li>`)
+        //if minutes is less than 10, it only returns single digit
+        //so we manually code it in nbd.
+        if (minutes < 10) {
+            $('ul:nth-of-type(2)').append(`<li>${hours}:0${minutes}</li>`)
+        } else {
+            $('ul:nth-of-type(2)').append(`<li>${hours}:${minutes}</li>`)
+        }
     }   
 }
 
