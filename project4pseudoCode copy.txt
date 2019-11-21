@@ -1,0 +1,21 @@
+EM. VEE. PEA.
+
+// Pseudo Code 
+
+1. user inputs usual commute time in minutes =
+2. user selects ttc station from drop down menu =
+3. selection is basis for API call to ttc API =
+4. return from API used to populate second drop down with routes from station =
+5. user selects routes =
+6. pull next 3 departures of user's route from first API return =
+7. display next 3 departures and calculate arrival time from user's input. =
+
+
+
+// Stretch Goals!
+
+1. pull current weather from weather API
+2. check if raining or snowing
+3. if raining, add 50% to commute time
+4. if snowing, add 100% to commute time.
+5. display new times for user with funny message about how garbage the ttc is.

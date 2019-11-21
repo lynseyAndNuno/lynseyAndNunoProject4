@@ -1,0 +1,41 @@
+// Yoda Wisdom Global Styles Starts Here
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    margin: 0 auto;
+}
+
+.wrapper {
+    max-width: 1080px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+h1 {
+   
+}
+
+
+/* Skip-line for accessibility */
+.skipLink {
+  position: absolute;
+  left: -1000px;
+  top: 5px;
+  z-index: 999;
+  background: $baseBackgroundColor;
+  color: $baseBackgroundColor;
+}
+
+.skipLink:focus {
+  left: 0;
+}
+/* - */
+

@@ -1,0 +1,35 @@
+@mixin mqTabletLand {
+    @media (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin mqTabletVert {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin mqMobile {
+    @media (max-width: 480px) {
+        @content;
+    }
+}
+
+@mixin mqMobilePlus {
+    @media (max-width: 415px) {
+        @content;
+    }
+}
+
+@mixin mqMobileX {
+    @media (max-width: 375px) {
+        @content;
+    }
+}
+
+@mixin mqMobileSE {
+    @media (max-width: 320px) {
+        @content;
+    }
+}
