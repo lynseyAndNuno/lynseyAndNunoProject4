@@ -2,21 +2,21 @@ body {
     background-image: url(../assets/backgroundImagel.jpg) ;
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-position: 100% 70%;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 header {
-    // background-color: rgba(0, 0, 0, 0.4);
     height: 20vh;
     h1 {
         display: inline-block;
-        font-family: 'Tomorrow', sans-serif;
         font-size: 4.5rem;
         color: yellow;
         text-align: center;
+        text-shadow: 0px 0px 2px white;
         margin: 50px 0;
         position: relative;
-        text-shadow: 0px 0px 2px white;
         &::before,
         &::after {
             content: '';
@@ -30,7 +30,7 @@ header {
             border-radius: 50%;
         }
         &::before {
-            left: -60px;
+            left: -80px;
         }
         &::after {
             right: -60px;
