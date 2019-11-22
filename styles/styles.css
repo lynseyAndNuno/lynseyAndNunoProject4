@@ -353,7 +353,7 @@ form fieldset {
 
 form fieldset label {
   font-size: 3rem;
-  color: white;
+  color: #f2efe8;
   padding: 20px;
 }
 
@@ -367,7 +367,8 @@ form fieldset input {
 form fieldset #search:focus,
 form fieldset select:focus,
 form fieldset input:focus {
-  background: yellow;
+  background: #596157;
+  color: #f2efe8;
 }
 
 form fieldset .searchButton {
@@ -387,11 +388,12 @@ form fieldset .searchButton button:nth-child(2) {
   padding: 0 25px;
   -webkit-transition: 0.35s;
   transition: 0.35s;
+  background: #f2efe8;
 }
 
 form fieldset .searchButton button:nth-child(2):hover {
-  color: yellow;
-  background: blue;
+  color: #f2efe8;
+  background: #990000;
 }
 
 form fieldset p {
@@ -399,7 +401,7 @@ form fieldset p {
   font-style: italic;
   text-shadow: rgba(0, 0, 0, 0.4);
   text-align: center;
-  color: white;
+  color: #f2efe8;
   padding: 0 10%;
 }
 
@@ -424,14 +426,18 @@ form fieldset:nth-child(1) > button:nth-child(5) {
   padding: 10px 50px;
   -webkit-transition: 0.35s;
   transition: 0.35s;
+  background: #f2efe8;
 }
 
 form fieldset:nth-child(1) > button:nth-child(5):hover {
-  color: yellow;
-  background: blue;
+  color: #f2efe8;
+  background: #990000;
 }
 
 .results {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: 100%;
   height: calc(100vh - 20px);
   text-align: center;
@@ -443,34 +449,44 @@ form fieldset:nth-child(1) > button:nth-child(5):hover {
 
 .results p {
   font-size: 3rem;
-  color: white;
+  color: #f2efe8;
   margin: 0;
   padding: 50px 0;
+}
+
+.results .departures,
+.results .arrivals {
+  width: 50%;
 }
 
 .results ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0;
   list-style: none;
 }
 
 .results li {
   font-size: 2rem;
-  color: white;
+  color: #f2efe8;
   border-radius: 20px;
-  background: grey;
+  background: #596157;
+  margin: 0 auto;
+  margin-top: 20px;
   padding: 10px 20px;
+  width: 20%;
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
 .results li:hover {
-  color: black;
-  background: white;
+  color: #f2efe8;
+  background: #990000;
 }
 
 footer {

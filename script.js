@@ -47,6 +47,12 @@ app.getRoutes = function(routes) {
     })
 }
 
+// Smooth scroll to get to the results page
+const wisdomScroll = $(window).scrollTop();
+$('.submit').click(function () {
+    $('html, body').animate({ scrollTop: wisdomScroll + 1500 })
+});
+
 // pulls departure time from stops data object and passes to display function
 app.getTimes = function(stops) {
     $('form.finalSubmit').on("submit", function(e){
@@ -68,26 +74,39 @@ app.getTimes = function(stops) {
 
 // Display data on the page
 app.displayInfo = function(times, arrival) {
+
+    $('.results').html('');
+
     const commuteInSeconds = arrival * 60;
 
-    $('.results').append(`<p>The next departure time is:</p><ul></ul>`);
+    $('.results').append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
     for(let i = 0; i <= 2; i++) {
         $('ul').append(`<li>${times[i].departure_time}</li>`);
     }
 
-    $('.results').append(`<p>You will arrive at:</p><ul></ul>`)
+    $('.results').append(`<div class="arrivals"><p>You will arrive at:</p><ul></ul></div>`)
     for(let i = 0; i <= 2; i++) {
         const unixTime = (commuteInSeconds + times[i].departure_timestamp - 18000)*1000;
         const arrivalTime = new Date(unixTime);
-        const hours = (arrivalTime.getUTCHours()) % 12;
+        let hours = (arrivalTime.getUTCHours()) % 12;
         const minutes = arrivalTime.getUTCMinutes();
 
+        if(hours === 0) {
+            hours = 12
+        }
+        
         //if minutes is less than 10, it only returns single digit
         //so we manually code it in nbd.
         if (minutes < 10) {
-            $('ul:nth-of-type(2)').append(`<li>${hours}:0${minutes}</li>`)
+            $('.arrivals ul').append(`<li>${hours}:0${minutes}</li>`)
         } else {
-            $('ul:nth-of-type(2)').append(`<li>${hours}:${minutes}</li>`)
+            $('.arrivals ul').append(`<li>${hours}:${minutes}</li>`)
+        }
+
+        if (arrivalTime.getUTCHours() >= 12) {
+            $('.arrivals ul li:last-of-type').append('p')
+        } else {
+            $('.arrivals ul li:last-of-type').append('a')
         }
     }   
 }
