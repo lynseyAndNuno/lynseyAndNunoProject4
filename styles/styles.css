@@ -241,6 +241,7 @@ html {
 
 body {
   margin: 0 auto;
+  font-family: 'Tomorrow', sans-serif;
 }
 
 .wrapper {
@@ -248,7 +249,7 @@ body {
   width: 80%;
   height: 100%;
   margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -285,7 +286,9 @@ body {
   background-image: url(../assets/backgroundImagel.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: 100% 70%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 header {
@@ -294,13 +297,12 @@ header {
 
 header h1 {
   display: inline-block;
-  font-family: 'Tomorrow', sans-serif;
   font-size: 4.5rem;
   color: yellow;
   text-align: center;
+  text-shadow: 0px 0px 2px white;
   margin: 50px 0;
   position: relative;
-  text-shadow: 0px 0px 2px white;
 }
 
 header h1::before, header h1::after {
@@ -317,7 +319,7 @@ header h1::before, header h1::after {
 }
 
 header h1::before {
-  left: -60px;
+  left: -80px;
 }
 
 header h1::after {
@@ -337,60 +339,143 @@ form fieldset {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border: none;
 }
 
 form fieldset label {
-  font-family: 'Tomorrow', sans-serif;
   font-size: 3rem;
   color: white;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 
 form fieldset #search,
 form fieldset select,
 form fieldset input {
-  font-family: 'Tomorrow', sans-serif;
   font-size: 2rem;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 15px;
 }
 
-.searchButton {
+form fieldset #search:focus,
+form fieldset select:focus,
+form fieldset input:focus {
+  background: yellow;
+}
+
+form fieldset .searchButton {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
+form fieldset .searchButton #search {
+  padding-left: 4%;
+}
+
+form fieldset .searchButton button:nth-child(2) {
+  font-size: 1.5rem;
+  border-radius: 20px;
+  margin-left: 5%;
+  padding: 0 25px;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+
+form fieldset .searchButton button:nth-child(2):hover {
+  color: yellow;
+  background: blue;
+}
+
+form fieldset p {
+  font-size: 2rem;
+  font-style: italic;
+  text-shadow: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: white;
+  padding: 0 10%;
+}
+
+form fieldset #route {
+  width: 40%;
+  padding-left: 2%;
+}
+
+form fieldset #time {
+  width: 20%;
+  padding-left: 8%;
+}
+
+form fieldset:nth-child(1) > label:nth-child(3) {
+  padding: 40px;
+}
+
+form fieldset:nth-child(1) > button:nth-child(5) {
+  font-size: 1.5rem;
+  border-radius: 20px;
+  margin-top: 50px;
+  padding: 10px 50px;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+}
+
+form fieldset:nth-child(1) > button:nth-child(5):hover {
+  color: yellow;
+  background: blue;
+}
+
 .results {
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: calc(100vh - 20px);
+  text-align: center;
+}
+
+.results p:nth-child(1) {
+  margin-top: 20%;
 }
 
 .results p {
-  font-family: 'Tomorrow', sans-serif;
   font-size: 3rem;
   color: white;
   margin: 0;
   padding: 50px 0;
 }
 
+.results ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  list-style: none;
+}
+
 .results li {
-  color: white;
   font-size: 2rem;
+  color: white;
+  border-radius: 20px;
+  background: grey;
+  padding: 10px 20px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.results li:hover {
+  color: black;
+  background: white;
 }
 
 footer {
-  background: black;
   height: 5vh;
+  background: black;
 }
 
 footer p {
