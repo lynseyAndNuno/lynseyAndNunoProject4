@@ -17,6 +17,7 @@ app.collectInfo = function() {
 
 // Make AJAX request with user inputted data
 app.baseUrl = "https://myttc.ca";
+app.weatherKey = "e990312509fe5adafa3aa72078a8db3c"
 
 // wow look it's an api call!
 app.getInfo = function (stationSearch) {
@@ -57,7 +58,7 @@ $('.submit').click(function () {
 app.getTimes = function(stops) {
     $('form.finalSubmit').on("submit", function(e){
         e.preventDefault();
-        const time = parseInt($('#time').val(), 10);
+        const time = parseInt($('#time').val(), 10) * app.getWeather();
         const routeTaken = $('#route').val();
         stops.forEach(function(stop) {
             if (stop.routes.length !== 0) {
@@ -72,10 +73,33 @@ app.getTimes = function(stops) {
     })
 }
 
+//weather api call to add time to commute
+app.getWeather = function() {
+    let timeMultiplier = 1;
+    $.ajax({
+        url: `https://api.openweathermap.org/data/2.5/weather/`,
+        method: "GET",
+        dataType: "json",
+        data: {
+            q: `toronto,ca`,
+            appid: app.weatherKey
+        }
+    }).then(function(data) {
+        const weatherType = data.weather[0].main;
+        if (weatherType.includes("rain")) {
+            timeMultiplier = 1.5;
+        } else if (weatherType.includes("snow")) {
+            timeMultiplier = 2;
+        }
+        console.log(timeMultiplier)
+    })
+    return timeMultiplier;
+}
+
 // Display data on the page
 app.displayInfo = function(times, arrival) {
 
-    $('.results').html('');
+    $('main .wrapper').append('<section class="results"></section>');
 
     const commuteInSeconds = arrival * 60;
 
@@ -90,7 +114,10 @@ app.displayInfo = function(times, arrival) {
         const arrivalTime = new Date(unixTime);
         let hours = (arrivalTime.getUTCHours()) % 12;
         const minutes = arrivalTime.getUTCMinutes();
+        let rainSnow = "";
 
+        // fun result of our 12-hour time format returns 0 for 12.
+        //manually recode it nbd
         if(hours === 0) {
             hours = 12
         }
@@ -108,7 +135,16 @@ app.displayInfo = function(times, arrival) {
         } else {
             $('.arrivals ul li:last-of-type').append('a')
         }
-    }   
+    }
+    if (app.getWeather() === 1.5) {
+        rainSnow = "rain"
+    } else if (app.getWeather() === 2) {
+        rainSnow = "snow"
+    }
+
+    if (app.getWeather() > 1) {
+    $(`.results`).append(`<div class="delays"><p>It looks like it's ${rainSnow}ing out, so we've added time to your commute because the TTC can be trash in the ${rainSnow}</p></div>`)
+    }
 }
 
 // Start app

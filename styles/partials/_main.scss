@@ -1,6 +1,9 @@
 .inputs {
   height: 75vh;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
 form {
@@ -14,7 +17,7 @@ form {
     label {
       font-size: 3rem;
       color: $primeryColor;
-      padding: 20px;
+      // padding: 20px 0;
     }
     #search,
     select, 
@@ -35,7 +38,7 @@ form {
         font-size: 1.5rem;
         border-radius: 20px;
         margin-left: 5%;
-        padding: 0 25px;
+        // padding: 0 25px;
         transition: 0.35s;
         background: $primeryColor;
         &:hover {
@@ -62,7 +65,7 @@ form {
     }
   }
   fieldset:nth-child(1) > label:nth-child(3) {
-    padding: 40px;
+    // padding: 40px;
   }
   fieldset:nth-child(1) > button:nth-child(5) {
     font-size: 1.5rem;
@@ -83,6 +86,7 @@ form {
   width: 100%;
   height: calc(100vh - 20px);
   text-align: center;
+  flex-wrap: wrap;
   p:nth-child(1) {
     margin-top: 20%;
   }
@@ -96,6 +100,13 @@ form {
   .departures,
   .arrivals {
     width: 50%;
+  }
+  .delays {
+    width: 100%;
+    p {
+      margin: 0;
+      padding: 0 20px;
+    }
   }
   ul {
     display: flex;
