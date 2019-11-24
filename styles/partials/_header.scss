@@ -8,7 +8,7 @@ body {
 }
 
 header {
-    height: 20vh;
+    height: 15vh;
     h1 {
         display: inline-block;
         font-size: 4.5rem;
@@ -30,7 +30,7 @@ header {
             border-radius: 50%;
         }
         &::before {
-            left: -80px;
+            left: -60px;
         }
         &::after {
             right: -60px;

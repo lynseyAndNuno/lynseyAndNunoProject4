@@ -93,7 +93,7 @@ app.getWeather = function() {
         }
         console.log(timeMultiplier)
     })
-    return timeMultiplier;
+    return 1.5;
 }
 
 // Display data on the page
@@ -101,6 +101,7 @@ app.displayInfo = function(times, arrival) {
 
     $('main .wrapper').append('<section class="results"></section>');
 
+    let rainSnow = "";
     const commuteInSeconds = arrival * 60;
 
     $('.results').append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
@@ -108,13 +109,19 @@ app.displayInfo = function(times, arrival) {
         $('ul').append(`<li>${times[i].departure_time}</li>`);
     }
 
+    if (app.getWeather() === 1.5) {
+        rainSnow = "rain"
+    } else if (app.getWeather() === 2) {
+        rainSnow = "snow"
+    }
+
+
     $('.results').append(`<div class="arrivals"><p>You will arrive at:</p><ul></ul></div>`)
     for(let i = 0; i <= 2; i++) {
         const unixTime = (commuteInSeconds + times[i].departure_timestamp - 18000)*1000;
         const arrivalTime = new Date(unixTime);
         let hours = (arrivalTime.getUTCHours()) % 12;
         const minutes = arrivalTime.getUTCMinutes();
-        let rainSnow = "";
 
         // fun result of our 12-hour time format returns 0 for 12.
         //manually recode it nbd
@@ -125,9 +132,9 @@ app.displayInfo = function(times, arrival) {
         //if minutes is less than 10, it only returns single digit
         //so we manually code it in nbd.
         if (minutes < 10) {
-            $('.arrivals ul').append(`<li>${hours}:0${minutes}</li>`)
+            $('.arrivals ul').append(`<li class=${rainSnow}>${hours}:0${minutes}</li>`)
         } else {
-            $('.arrivals ul').append(`<li>${hours}:${minutes}</li>`)
+            $('.arrivals ul').append(`<li class=${rainSnow}>${hours}:${minutes}</li>`)
         }
 
         if (arrivalTime.getUTCHours() >= 12) {
@@ -136,14 +143,8 @@ app.displayInfo = function(times, arrival) {
             $('.arrivals ul li:last-of-type').append('a')
         }
     }
-    if (app.getWeather() === 1.5) {
-        rainSnow = "rain"
-    } else if (app.getWeather() === 2) {
-        rainSnow = "snow"
-    }
-
     if (app.getWeather() > 1) {
-    $(`.results`).append(`<div class="delays"><p>It looks like it's ${rainSnow}ing out, so we've added time to your commute because the TTC can be trash in the ${rainSnow}</p></div>`)
+        $(`.results`).append(`<div class="delays"><p>It looks like it's ${rainSnow}ing out, so we've added time to your commute because the TTC can be trash in the ${rainSnow}</p></div>`)
     }
 }
 
