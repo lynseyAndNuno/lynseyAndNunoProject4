@@ -40,7 +40,7 @@ app.getInfo = function (stationSearch) {
     });
 }
 
-// pulls route name from stops data object and appends to drop down menu
+// Pulls route name from stops data object and appends to drop down menu
 app.getRoutes = function(routes) {
     routes.forEach(function(route) {
         const htmlToAppend = `<option>${route.name}</option>`;
@@ -54,7 +54,7 @@ $('.submit').click(function () {
     $('html, body').animate({ scrollTop: wisdomScroll + 1500 })
 });
 
-// pulls departure time from stops data object and passes to display function
+// Pulls departure time from stops data object and passes to display function
 app.getTimes = function(stops) {
     $('form.finalSubmit').on("submit", function(e){
         e.preventDefault();
@@ -73,7 +73,7 @@ app.getTimes = function(stops) {
     })
 }
 
-//weather api call to add time to commute
+// Weather api call to add time to commute
 app.getWeather = function() {
     let timeMultiplier = 1;
     $.ajax({
