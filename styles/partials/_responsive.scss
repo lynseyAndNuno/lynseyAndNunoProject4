@@ -9,14 +9,14 @@
             font-size: 2.3rem;
         }
         li {
-            width: 30%;
+            width: auto;
         }
     }
 }
 
 @include mqMobile {
-    body {
-        // background-position: center;
+    body {    
+       background-position: center;
     }
     header {
         h1 {
@@ -36,24 +36,145 @@
         }
     }
     .results {
+        height: 80hv;
+        .departures,
+        .arrivals {
+            height: 45vh;
+            align-self: center;
+        }
         p {
             height: 20%;
         }
         li {
-            margin-top: 15%;
-            width: auto;
+            margin-top: 20%;
         }
     }
+    form {
+        fieldset {
+            #route {
+                width: 95%;
+                text-align: center;
+            }
+        } 
+    } 
 } 
 
 @include mqMobilePlus {
-    
+    header {
+        h1 {
+            font-size: 2.5rem;
+            &::before,
+            &::after {
+                top: 7px;
+                height: 15px;
+                width: 15px;
+            }
+        }
+    }
+    form {
+        fieldset {
+            padding: 0;
+            label {
+            font-size: 2.5rem;
+            }
+            p {
+                font-size: 1.8rem;
+                padding: 0;
+            }
+        }
+    }
+    .results {
+        margin-top: 0;
+        .departures p,
+        .arrivals p {
+            padding: 0;
+        }
+        .delays p {
+            padding-top: 15%;
+        }
+    }
 }
 
+
 @include mqMobileX {
-    
+    header {
+        h1 {
+            font-size: 2.2rem;
+            &::before,
+            &::after {
+                top: 5px;
+            }
+        }
+    }
+    form fieldset .searchButton button:nth-child(2) {
+        margin-left: 2%;
+    }
+    footer p {
+        font-size: 1.8rem;
+    }
 }
 
 @include mqMobileSE {
-    
+    header {
+        .wrapper {
+            h1 {
+                font-size: 2rem;
+                &::before,
+                &::after {
+                    top: 4px;
+                }
+                &::before {
+                    left: -22px;
+                }
+                &::after {
+                    right: -22px;
+                }
+            }
+        }
+    }
+    form {
+        fieldset {
+            label {
+                font-size: 1.8rem;
+            }
+            p {
+                font-size: 1.6rem;
+                padding: 0;
+            }
+            input[type="search"],
+            select, 
+            input[type="text"] {
+                font-size: 1.8rem;
+            }
+            .searchButton {
+                flex-direction: column;
+                button:nth-child(2) {
+                    align-self: center;
+                    width: 45%;
+                    margin-top: 5%;
+                }
+            }
+            #time {
+                width: 30%;
+            }
+        }
+        fieldset:nth-child(1) > button:nth-child(5) {
+            margin-top: 10%;
+            padding: 5px 40px;
+        }
+    }
+    .results {
+        p {
+            font-size: 2rem;
+        }
+        li {
+            font-size: 1.8rem;
+        }
+        .delays p {
+            margin-top: 15%;
+        }
+    }
+    footer p {
+        font-size: 1.5rem;
+    }
 }
