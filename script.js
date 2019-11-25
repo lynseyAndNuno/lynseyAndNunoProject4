@@ -1,28 +1,32 @@
-// JS file starts here 
-
 // App namespace to hold all methods
 const app = {};
+app.baseUrl = "http://myttc.ca";
+app.weatherKey = "e990312509fe5adafa3aa72078a8db3c"
 
-// To collect user input
+// Smooth scroll to get to the results page
+const resultsScroll = $(window).scrollTop();
+$('.submit').click(function () {
+    $('html, body').animate({ scrollTop: resultsScroll + 1500 })
+});
+
+// To collect user input on starting point
 app.collectInfo = function() {
     $('form.search').on("submit", function(e) {
         e.preventDefault();
         const inputVal = $('#search').val();
         // api call requires a string with underscores between words.
         const parsedInput = inputVal.replace(/\s/g, '_');
-
+        // pass the input into our api call
         app.getInfo(parsedInput);
     });
 }
 
-// Make AJAX request with user inputted data
-app.baseUrl = "https://myttc.ca";
-app.weatherKey = "e990312509fe5adafa3aa72078a8db3c"
-
 // wow look it's an api call!
+// use the stop search as our query parameters
 app.getInfo = function (stationSearch) {
+    $('select').html("");
     $.ajax({
-        url: 'http://proxy.hackeryou.com',
+        url: 'https://proxy.hackeryou.com',
         dataType: 'json',
         method: 'GET',
         data: {
@@ -30,17 +34,27 @@ app.getInfo = function (stationSearch) {
         }
     }).then(function(data) {
         // return data lists 'stops' that don't actually have routes
-        // we don't want those stops.
-        data.stops.forEach(function(stop) {
-            if (stop.routes.length !== 0) {
-                app.getRoutes(stop.routes);
-            }
+        // we don't want those stops. .filter() to the rescue!
+        const actuallyARoute = data.stops.filter(function(value) {
+            return value.routes.length > 0;
         });
-        app.getTimes(data.stops);
+        // use the filtered array to call the route names
+        actuallyARoute.forEach(function(stop) {
+            app.getRoutes(stop.routes);
+        })
+        // start our event listener to pull departure times!
+        app.getTimes(actuallyARoute);
+    }).fail(function(error) {
+        //display an overlay with an error message
+        $('.errorMessage').removeClass(`hidden`);
+        // event listener to close the message
+        $('.errorMessage button').on("click", function(){
+            $(this).parent().addClass(`hidden`);
+        })
     });
 }
 
-// Pulls route name from stops data object and appends to drop down menu
+// pulls route name from stops data object and appends to drop down menu
 app.getRoutes = function(routes) {
     routes.forEach(function(route) {
         const htmlToAppend = `<option>${route.name}</option>`;
@@ -48,32 +62,24 @@ app.getRoutes = function(routes) {
     })
 }
 
-// Smooth scroll to get to the results page
-const wisdomScroll = $(window).scrollTop();
-$('.submit').click(function () {
-    $('html, body').animate({ scrollTop: wisdomScroll + 1500 })
-});
-
-// Pulls departure time from stops data object and passes to display function
+// pulls departure time from stops data object and passes to display function
 app.getTimes = function(stops) {
     $('form.finalSubmit').on("submit", function(e){
         e.preventDefault();
-        const time = parseInt($('#time').val(), 10) * app.getWeather();
+        const time = parseInt($('#time').val(), 10) * app.weatherMultiplier;
         const routeTaken = $('#route').val();
         stops.forEach(function(stop) {
-            if (stop.routes.length !== 0) {
-                stop.routes.forEach(function(route){
-                    if (route.name === routeTaken) {
-                        const nextDepartures = route.stop_times;
-                        app.displayInfo(nextDepartures, time);
-                    }
-                })
-            }
+            stop.routes.forEach(function(route){
+                if (route.name === routeTaken) {
+                    const nextDepartures = route.stop_times;
+                    app.displayInfo(nextDepartures, time);
+                }
+            })
         })
     })
 }
 
-// Weather api call to add time to commute
+//weather api call to add time to commute
 app.getWeather = function() {
     let timeMultiplier = 1;
     $.ajax({
@@ -91,61 +97,71 @@ app.getWeather = function() {
         } else if (weatherType.includes("snow")) {
             timeMultiplier = 2;
         }
-        console.log(timeMultiplier)
     })
-    return 1.5;
+    return timeMultiplier;
 }
 
+// assigning weather api return to a variable
+// this lets us use the return later without having to call the api every time.
+app.weatherMultiplier = app.getWeather();
+
 // Display data on the page
-app.displayInfo = function(times, arrival) {
-
+app.displayInfo = function(times, commuteTime) {
+    //first let's make a section to put our results in!
     $('main .wrapper').append('<section class="results"></section>');
-
-    let rainSnow = "";
-    const commuteInSeconds = arrival * 60;
-
     $('.results').append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
+    // we only want the next 3 departure times, not everything
+    // hence: for loop, rather than forEach.
     for(let i = 0; i <= 2; i++) {
         $('ul').append(`<li>${times[i].departure_time}</li>`);
     }
-
-    if (app.getWeather() === 1.5) {
-        rainSnow = "rain"
-    } else if (app.getWeather() === 2) {
-        rainSnow = "snow"
-    }
-
-
+    //convert our estimated commute into seconds for some mathy fun
+    const commuteInSeconds = commuteTime * 60;
+    // set up a container for our arrival times times!
     $('.results').append(`<div class="arrivals"><p>You will arrive at:</p><ul></ul></div>`)
     for(let i = 0; i <= 2; i++) {
+        // working with unix time zones!
+        // -18000 to convert to local time
         const unixTime = (commuteInSeconds + times[i].departure_timestamp - 18000)*1000;
+        // setting a Date object to work with unix timecodes
         const arrivalTime = new Date(unixTime);
         let hours = (arrivalTime.getUTCHours()) % 12;
         const minutes = arrivalTime.getUTCMinutes();
+        let rainSnow = ""; //initializing as empty string for regular weather.
 
         // fun result of our 12-hour time format returns 0 for 12.
-        //manually recode it nbd
+        // so we manually recode it nbd
         if(hours === 0) {
             hours = 12
         }
         
-        //if minutes is less than 10, it only returns single digit
-        //so we manually code it in nbd.
+        // SIMILARLY, if minutes is less than 10, it only returns single digit
+        // so we manually code it in too. Cool.
         if (minutes < 10) {
-            $('.arrivals ul').append(`<li class=${rainSnow}>${hours}:0${minutes}</li>`)
+            $('.arrivals ul').append(`<li>${hours}:0${minutes}</li>`)
         } else {
-            $('.arrivals ul').append(`<li class=${rainSnow}>${hours}:${minutes}</li>`)
+            $('.arrivals ul').append(`<li>${hours}:${minutes}</li>`)
         }
 
+        //and throwing on an a or p to match the format from the api return.
         if (arrivalTime.getUTCHours() >= 12) {
             $('.arrivals ul li:last-of-type').append('p')
         } else {
             $('.arrivals ul li:last-of-type').append('a')
         }
     }
-    if (app.getWeather() > 1) {
-        $(`.results`).append(`<div class="delays"><p>It looks like it's ${rainSnow}ing out, so we've added time to your commute because the TTC can be trash in the ${rainSnow}</p></div>`)
+
+    // uses the return from weather API to assign the weather type.
+    if (app.weatherMultiplier === 1.5) {
+        rainSnow = "rain"
+    } else if (app.weatherMultiplier === 2) {
+        rainSnow = "snow"
     }
+
+    //and let the nice people know that yes, they will be late.
+    if (app.weatherMultiplier > 1) {
+    $(`.results`).append(`<div class="delays"><p>It looks like it's ${rainSnow}ing out, so we've added time to your commute because the TTC can be trash in the ${rainSnow}</p></div>`);
+    };
 }
 
 // Start app

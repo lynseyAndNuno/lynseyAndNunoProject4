@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Tomorrow&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3d22ae5abd.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" href="./assets/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="./styles/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Tomorrow&display=swap" rel="stylesheet">
     <title>Am I Late?</title>
 </head>
 <body>
@@ -28,7 +29,7 @@
                             <input type="search" name="departure" id="search">
                             <button type="submit">Search!</button>
                         </div>
-                        <p>Please specify if starting from a station (e.g. "Eglinton Station"). You can also search by intersection with a stop (e.g. "Yonge and Queen")</p>
+                        <p>Please specify if starting from a station (e.g. "Eglinton Station"). You can also search by intersection with a stop (e.g. "Queen and Yonge")</p>
                     </fieldset>
                 </form>
             </div>
@@ -46,6 +47,8 @@
                 </form>
             </div>     
         </section>
+        <div class="errorMessage hidden"><button><i class="fas fa-times"></i></button><p>Hmm, we're having trouble finding that stop. Make sure you're specifying if you're starting at a station. If you're trying to find an intersection, try reversing the order (e.g. 'Queen and Yonge' instead of 'Yonge and Queen').</p></div>
+        </div>
     </main>
 
     <footer>

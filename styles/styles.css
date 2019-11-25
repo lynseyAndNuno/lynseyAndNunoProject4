@@ -348,6 +348,10 @@ header h1::after {
           justify-content: space-evenly;
 }
 
+main .wrapper {
+  position: relative;
+}
+
 form {
   width: 100%;
 }
@@ -546,6 +550,47 @@ form fieldset:nth-child(1) > button:nth-child(5):hover {
 .results li:hover {
   color: #596157;
   background: lightgrey;
+}
+
+.errorMessage {
+  position: absolute;
+  top: 25%;
+  height: 25%;
+  width: 80%;
+  background-color: black;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.errorMessage button {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border: none;
+  background: none;
+}
+
+.errorMessage i {
+  font-size: 3rem;
+  color: #f2efe8;
+}
+
+.errorMessage p {
+  margin: 0 0 0 30px;
+  font-size: 2rem;
+  color: #f2efe8;
+}
+
+.hidden {
+  display: none;
 }
 
 footer {
