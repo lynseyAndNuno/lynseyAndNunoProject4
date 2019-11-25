@@ -283,7 +283,7 @@ img {
 
 /* - */
 body {
-  background-image: url(../assets/background1.png);
+  background-image: url(../assets/backgroundImage.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
