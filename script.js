@@ -108,7 +108,7 @@ app.weatherMultiplier = app.getWeather();
 // Display data on the page
 app.displayInfo = function(times, commuteTime) {
     //first let's make a section to put our results in!
-    $('main .wrapper').append('<section class="results"></section>');
+    $('main').append('<div class="wrapper"><section class="results"></section></div>');
     $('.results').append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
     // we only want the next 3 departure times, not everything
     // hence: for loop, rather than forEach.
