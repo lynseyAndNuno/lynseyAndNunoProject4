@@ -36,12 +36,12 @@ app.getInfo = function (stationSearch) {
         }
     }).then(function(data) {
         // return data lists 'stops' that don't actually have routes
-        // we don't want those stops.
+        // we don't want those stops. .filter() to the rescue!
         const actuallyARoute = data.stops.filter(function(value) {
             return value.routes.length > 0;
         });
 
-        // use the filtered array to call the stop names
+        // use the filtered array to call the route names
         actuallyARoute.forEach(function(stop) {
             app.getRoutes(stop.routes);
         })
@@ -74,14 +74,12 @@ app.getTimes = function(stops) {
         const time = parseInt($('#time').val(), 10) * app.weatherMultiplier;
         const routeTaken = $('#route').val();
         stops.forEach(function(stop) {
-            if (stop.routes.length !== 0) {
-                stop.routes.forEach(function(route){
-                    if (route.name === routeTaken) {
-                        const nextDepartures = route.stop_times;
-                        app.displayInfo(nextDepartures, time);
-                    }
-                })
-            }
+            stop.routes.forEach(function(route){
+                if (route.name === routeTaken) {
+                    const nextDepartures = route.stop_times;
+                    app.displayInfo(nextDepartures, time);
+                }
+            })
         })
     })
 }
@@ -108,6 +106,8 @@ app.getWeather = function() {
     return timeMultiplier;
 }
 
+// assigning weather api return to a variable
+// this lets us use the return later without having to call the api every time.
 app.weatherMultiplier = app.getWeather();
 
 // Display data on the page
@@ -115,6 +115,9 @@ app.displayInfo = function(times, commuteTime) {
     //first let's make a section to put our results in!
     $('main .wrapper').append('<section class="results"></section>');
     $('.results').append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
+
+    // we only want the next 3 departure times, not everything
+    // hence: for loop, rather than forEach.
     for(let i = 0; i <= 2; i++) {
         $('ul').append(`<li>${times[i].departure_time}</li>`);
     }
@@ -122,24 +125,26 @@ app.displayInfo = function(times, commuteTime) {
     //convert our estimated commute into seconds for some mathy fun
     const commuteInSeconds = commuteTime * 60;
 
+    // set up a container for our arrival times times!
     $('.results').append(`<div class="arrivals"><p>You will arrive at:</p><ul></ul></div>`)
     for(let i = 0; i <= 2; i++) {
         // working with unix time zones!
         // -18000 to convert to local time
         const unixTime = (commuteInSeconds + times[i].departure_timestamp - 18000)*1000;
+        // setting a Date object to work with unix timecodes
         const arrivalTime = new Date(unixTime);
         let hours = (arrivalTime.getUTCHours()) % 12;
         const minutes = arrivalTime.getUTCMinutes();
-        let rainSnow = "";
+        let rainSnow = ""; //initializing as empty string for regular weather.
 
         // fun result of our 12-hour time format returns 0 for 12.
-        //manually recode it nbd
+        // so we manually recode it nbd
         if(hours === 0) {
             hours = 12
         }
         
-        //if minutes is less than 10, it only returns single digit
-        //so we manually code it in nbd.
+        // SIMILARLY, if minutes is less than 10, it only returns single digit
+        // so we manually code it in too. Cool.
         if (minutes < 10) {
             $('.arrivals ul').append(`<li>${hours}:0${minutes}</li>`)
         } else {
