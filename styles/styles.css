@@ -531,6 +531,8 @@ form fieldset:nth-child(1) > button:nth-child(5):hover {
 .results li:hover {
   color: #596157;
   background: lightgrey;
+}
+
 .errorMessage {
   position: absolute;
   top: 25%;
