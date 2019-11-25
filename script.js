@@ -1,6 +1,6 @@
 // App namespace to hold all methods
 const app = {};
-app.baseUrl = "https://myttc.ca";
+app.baseUrl = "http://myttc.ca";
 app.weatherKey = "e990312509fe5adafa3aa72078a8db3c"
 
 // Smooth scroll to get to the results page
@@ -84,7 +84,7 @@ app.getTimes = function(stops) {
 app.getWeather = function() {
     let timeMultiplier = 1;
     $.ajax({
-        url: `https://api.openweathermap.org/data/2.5/weather/`,
+        url: `http://api.openweathermap.org/data/2.5/weather/`,
         method: "GET",
         dataType: "json",
         data: {
