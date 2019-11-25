@@ -6,6 +6,10 @@
     justify-content: space-evenly;
 }
 
+main .wrapper {
+  position: relative;
+}
+
 form {
     width: 100%;
     fieldset {
@@ -143,4 +147,36 @@ form {
             background: lightgrey;
         }
     }
+}
+
+.errorMessage {
+  position: absolute;
+  top: 25%;
+  height: 25%;
+  width: 80%;
+  background-color: black;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border: none;
+    background: none;
+  }
+  i {
+    font-size: 3rem;
+    color: $primeryColor;
+  }
+  p {
+    margin: 0 0 0 30px;
+    font-size: 2rem;
+    color: $primeryColor;
+  }
+}
+
+.hidden {
+  display: none;
 }
