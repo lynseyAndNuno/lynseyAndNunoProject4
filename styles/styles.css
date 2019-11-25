@@ -248,8 +248,8 @@ body {
   max-width: 1080px;
   width: 80%;
   height: 100%;
-  margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  margin: 20px auto 0;
+  background-color: #272525;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -283,32 +283,39 @@ img {
 
 /* - */
 body {
-  background-image: url(../assets/backgroundImagel.jpg);
+  background-image: url(../assets/background1.png);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 100% 70%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-position: bottom;
 }
 
 header {
   height: 15vh;
 }
 
+header .wrapper {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #1b1a1a;
+  border: 15px solid white;
+  border-radius: 30px 30px 0 0;
+}
+
 header h1 {
   display: inline-block;
-  font-size: 4.5rem;
-  color: #f5ff3a;
+  font-size: 5.5rem;
+  color: #e87c41;
   text-align: center;
-  text-shadow: 0px 0px 2px #f2efe8;
-  margin: 50px 0;
+  margin: 0;
   position: relative;
 }
 
 header h1::before, header h1::after {
   content: '';
   position: absolute;
-  top: 15px;
+  top: 20px;
   display: block;
   height: 25px;
   width: 25px;
@@ -327,7 +334,7 @@ header h1::after {
 }
 
 .inputs {
-  height: 80vh;
+  height: calc(80vh - 40px);
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -383,23 +390,35 @@ form fieldset input[type="text"]:focus {
 }
 
 form fieldset .search {
-  height: 40%;
+  height: 100%;
 }
 
 form fieldset .searchButton {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
 }
 
 form fieldset .searchButton #search {
   text-align: center;
+  width: 80%;
 }
 
 form fieldset .searchButton button:nth-child(2) {
+  text-align: center;
   font-size: 1.5rem;
   border-radius: 20px;
-  margin-left: 5%;
+  width: 40%;
+  margin-top: 20px;
+  padding: 10px 50px;
   -webkit-transition: 0.35s;
   transition: 0.35s;
   background: #f2efe8;
@@ -516,7 +535,7 @@ form fieldset:nth-child(1) > button:nth-child(5):hover {
 
 .results li.rain {
   color: #596157;
-  background: #f5ff3a;
+  background: #e87c41;
 }
 
 .results li.snow {
@@ -532,6 +551,11 @@ form fieldset:nth-child(1) > button:nth-child(5):hover {
 footer {
   height: 5vh;
   background: black;
+}
+
+footer .wrapper {
+  background: black;
+  margin-bottom: 0;
 }
 
 footer p {

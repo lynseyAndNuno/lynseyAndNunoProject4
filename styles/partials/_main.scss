@@ -1,5 +1,5 @@
 .inputs {
-    height: 80vh;
+    height: calc(80vh - 40px);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -31,17 +31,24 @@ form {
             }
         }
         .search {
-            height: 40%;
+            height: 100%;
         }
         .searchButton {
             display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 50%;
             #search {
                 text-align: center;
+                width: 80%;
             }
             button:nth-child(2) {
+                text-align: center;
                 font-size: 1.5rem;
                 border-radius: 20px;
-                margin-left: 5%;
+                width: 40%;
+                margin-top: 20px;
+                padding: 10px 50px; 
                 transition: 0.35s;
                 background: $primeryColor;
                 &:hover {

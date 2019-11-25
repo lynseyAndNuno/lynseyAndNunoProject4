@@ -1,6 +1,10 @@
 footer {
   height: 5vh;
   background: black;
+  .wrapper {
+  background: black;
+  margin-bottom: 0;
+  }
   p {
       font-size: 2rem;
       color: #a32a2e;
