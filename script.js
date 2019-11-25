@@ -69,7 +69,6 @@ app.getTimes = function(stops) {
         const time = parseInt($('#time').val(), 10) * app.weatherMultiplier;
         const routeTaken = $('#route').val();
         stops.forEach(function(stop) {
-            console.log(stop);
             stop.routes.forEach(function(route){
                 if (route.name === routeTaken) {
                     const nextDepartures = route.stop_times;
