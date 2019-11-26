@@ -7,7 +7,7 @@
 }
 
 main .wrapper {
-    border: 2px solid white;
+    border: 2px solid $primeryBorder;
 }
 
 form {
@@ -125,7 +125,7 @@ form {
         font-size: 2rem;
         color: $primeryColor;
         border-radius: 20px;
-        border: 3px solid #919191;
+        border: 3px solid $secondaryBorder;
         background: $secondaryPopColor;
         width: 25%;
         margin: 0 auto;
@@ -148,36 +148,36 @@ form {
 }
 
 .errorMessage {
-  position: absolute;
-  top: 50%;
-  left: 15%;
-  transform: translateY(-50%);
-  height: 25%;
-  width: 70%;
-  background-color: black;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 10px solid white;
-  button {
     position: absolute;
-    top: 5px;
-    left: 5px;
-    border: none;
-    background: none;
-  }
-  i {
-    font-size: 3rem;
-    color: $primeryColor;
-  }
-  p {
-    margin: 0 0 0 30px;
-    font-size: 2rem;
-    color: $primeryColor;
-  }
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    height: 25%;
+    width: 70%;
+    background-color: $primeryBackground;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 10px solid $primeryBorder;
+    button {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        border: none;
+        background: none;
+    }
+    i {
+        font-size: 3rem;
+        color: $primeryColor;
+    }
+    p {
+        margin: 0 0 0 30px;
+        font-size: 2rem;
+        color: $primeryColor;
+    }
 }
 
 .hidden {
-  display: none;
+    display: none;
 }

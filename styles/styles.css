@@ -296,8 +296,8 @@ button:hover {
   left: -1000px;
   top: 5px;
   z-index: 999;
-  background: black;
-  color: black;
+  background: #000;
+  color: #000;
 }
 
 .skipLink:focus {
@@ -310,7 +310,7 @@ header {
 
 header .wrapper {
   background: #1b1a1a;
-  border: 15px solid white;
+  border: 15px solid #fff;
   border-radius: 30px 30px 0 0;
 }
 
@@ -360,7 +360,7 @@ header h1::after {
 }
 
 main .wrapper {
-  border: 2px solid white;
+  border: 2px solid #fff;
 }
 
 form {
@@ -567,7 +567,7 @@ form button.submit {
           transform: translateY(-50%);
   height: 25%;
   width: 70%;
-  background-color: black;
+  background-color: #000;
   padding: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -578,7 +578,7 @@ form button.submit {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: 10px solid white;
+  border: 10px solid #fff;
 }
 
 .errorMessage button {
@@ -606,11 +606,11 @@ form button.submit {
 
 footer {
   height: 5vh;
-  background: black;
+  background: #000;
 }
 
 footer .wrapper {
-  background: black;
+  background: #000;
   margin-top: 20px;
   margin-bottom: 0;
 }
@@ -694,6 +694,9 @@ footer p {
   form fieldset:nth-child(1) > button:nth-child(5) {
     margin-top: 10%;
     padding: 5px 40px;
+  }
+  form .submit {
+    width: 45%;
   }
   .results p {
     font-size: 2rem;
