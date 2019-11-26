@@ -7,6 +7,15 @@ html {
 body {
   margin: 0 auto;
   font-family: 'Tomorrow', sans-serif;
+  background-image: url(../assets/backgroundImage.png) ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+}
+
+section {
+  margin: 0;
 }
 
 .wrapper {
@@ -21,9 +30,18 @@ body {
   align-items: center;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+button {
+  text-align: center;
+  font-size: 1.6rem;
+  border-radius: 20px;
+  width: 15%;
+  margin-top: 20px;
+  padding: 10px 0; 
+  transition: 0.35s;
+  background: $primeryPopColor;
+  &:hover {
+    background: $primeryColor;
+  }
 }
 
 
@@ -40,5 +58,3 @@ img {
 .skipLink:focus {
   left: 0;
 }
-/* - */
-

@@ -9,6 +9,32 @@ $('.submit').click(function () {
     $('html, body').animate({ scrollTop: resultsScroll + 1500 })
 });
 
+//weather api call to add time to commute
+app.getWeather = function() {
+    let timeMultiplier = 1;
+    $.ajax({
+        url: `https://api.openweathermap.org/data/2.5/weather/`,
+        method: "GET",
+        dataType: "json",
+        data: {
+            q: `toronto,ca`,
+            appid: app.weatherKey
+        }
+    }).then(function(data) {
+        const weatherType = data.weather[0].main;
+        if (weatherType.includes("rain")) {
+            timeMultiplier = 1.5;
+        } else if (weatherType.includes("snow")) {
+            timeMultiplier = 2;
+        }
+    })
+    return timeMultiplier;
+}
+
+// assigning weather api return to a variable
+// this lets us use the return later without having to call the api every time.
+app.weatherMultiplier = app.getWeather();
+
 // To collect user input on starting point
 app.collectInfo = function() {
     $('form.search').on("submit", function(e) {
@@ -97,35 +123,9 @@ app.getTimes = function(stops) {
     })
 }
 
-//weather api call to add time to commute
-app.getWeather = function() {
-    let timeMultiplier = 1;
-    $.ajax({
-        url: `https://api.openweathermap.org/data/2.5/weather/`,
-        method: "GET",
-        dataType: "json",
-        data: {
-            q: `toronto,ca`,
-            appid: app.weatherKey
-        }
-    }).then(function(data) {
-        const weatherType = data.weather[0].main;
-        if (weatherType.includes("rain")) {
-            timeMultiplier = 1.5;
-        } else if (weatherType.includes("snow")) {
-            timeMultiplier = 2;
-        }
-    })
-    return timeMultiplier;
-}
-
-// assigning weather api return to a variable
-// this lets us use the return later without having to call the api every time.
-app.weatherMultiplier = app.getWeather();
-
 // Display data on the page
 app.displayInfo = function(times, commuteTime) {
-    $('.results').removeClass("hidden");
+    $('main .wrapper').removeClass("hidden");
     $('.results').html("").append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
     // we only want the next 3 departure times, not everything
     // hence: for loop, rather than forEach.

@@ -242,6 +242,15 @@ html {
 body {
   margin: 0 auto;
   font-family: 'Tomorrow', sans-serif;
+  background-image: url(../assets/backgroundImage.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom;
+}
+
+section {
+  margin: 0;
 }
 
 .wrapper {
@@ -265,9 +274,20 @@ body {
           align-items: center;
 }
 
-img {
-  max-width: 100%;
-  display: block;
+button {
+  text-align: center;
+  font-size: 1.6rem;
+  border-radius: 20px;
+  width: 15%;
+  margin-top: 20px;
+  padding: 10px 0;
+  -webkit-transition: 0.35s;
+  transition: 0.35s;
+  background: #990000;
+}
+
+button:hover {
+  background: #f2efe8;
 }
 
 /* Skip-line for accessibility */
@@ -284,23 +304,11 @@ img {
   left: 0;
 }
 
-/* - */
-body {
-  background-image: url(../assets/backgroundImage.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: bottom;
-}
-
 header {
   height: 15vh;
 }
 
 header .wrapper {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   background: #1b1a1a;
   border: 15px solid white;
   border-radius: 30px 30px 0 0;
@@ -351,11 +359,19 @@ header h1::after {
           justify-content: space-evenly;
 }
 
+main .wrapper {
+  border: 2px solid white;
+}
+
 form {
   width: 100%;
 }
 
 form fieldset {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -375,7 +391,7 @@ form fieldset label {
   text-align: center;
   font-size: 2.8rem;
   color: #f2efe8;
-  padding: 0 0 1% 0;
+  padding: 0 0 0.5% 0;
 }
 
 form fieldset input[type="search"],
@@ -407,29 +423,12 @@ form fieldset .searchButton {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 50%;
+  width: 100%;
 }
 
 form fieldset .searchButton #search {
   text-align: center;
-  width: 80%;
-}
-
-form fieldset .searchButton button:nth-child(2) {
-  text-align: center;
-  font-size: 1.5rem;
-  border-radius: 20px;
-  width: 40%;
-  margin-top: 20px;
-  padding: 10px 0;
-  -webkit-transition: 0.35s;
-  transition: 0.35s;
-  background: #f2efe8;
-}
-
-form fieldset .searchButton button:nth-child(2):hover {
-  color: #f2efe8;
-  background: #990000;
+  width: 50%;
 }
 
 form fieldset p {
@@ -484,18 +483,7 @@ form fieldset #time {
 }
 
 form button.submit {
-  font-size: 1.5rem;
-  border-radius: 20px;
-  margin-top: 2%;
-  padding: 10px 50px;
-  -webkit-transition: 0.35s;
-  transition: 0.35s;
-  background: #f2efe8;
-}
-
-form button.submit:hover {
-  color: #f2efe8;
-  background: #990000;
+  margin-top: 1%;
 }
 
 .results {
@@ -506,10 +494,6 @@ form button.submit:hover {
   text-align: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-}
-
-.results p:nth-child(1) {
-  margin-top: 20%;
 }
 
 .results p {
