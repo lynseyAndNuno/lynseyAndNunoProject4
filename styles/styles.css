@@ -257,6 +257,9 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -348,10 +351,6 @@ header h1::after {
           justify-content: space-evenly;
 }
 
-main .wrapper {
-  position: relative;
-}
-
 form {
   width: 100%;
 }
@@ -374,9 +373,9 @@ form fieldset {
 
 form fieldset label {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: #f2efe8;
-  padding: 2% 0;
+  padding: 0 0 1% 0;
 }
 
 form fieldset input[type="search"],
@@ -440,6 +439,7 @@ form fieldset p {
   text-align: center;
   color: #f2efe8;
   padding: 0 10%;
+  margin: 1% auto;
 }
 
 form fieldset .finalSubmit {
@@ -455,6 +455,7 @@ form fieldset .flexInputs {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  margin-bottom: 1%;
 }
 
 form fieldset .flexInputs div {
@@ -485,7 +486,7 @@ form fieldset #time {
 form button.submit {
   font-size: 1.5rem;
   border-radius: 20px;
-  margin-top: 50px;
+  margin-top: 2%;
   padding: 10px 50px;
   -webkit-transition: 0.35s;
   transition: 0.35s;
@@ -576,9 +577,12 @@ form button.submit:hover {
 
 .errorMessage {
   position: absolute;
-  top: 25%;
+  top: 50%;
+  left: 15%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   height: 25%;
-  width: 80%;
+  width: 70%;
   background-color: black;
   padding: 10px;
   display: -webkit-box;
@@ -590,6 +594,7 @@ form button.submit:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  border: 10px solid white;
 }
 
 .errorMessage button {
@@ -622,7 +627,7 @@ footer {
 
 footer .wrapper {
   background: black;
-  margin-top: 0;
+  margin-top: 20px;
   margin-bottom: 0;
 }
 
@@ -721,6 +726,11 @@ footer p {
   }
   footer p {
     font-size: 1.5rem;
+  }
+  .errorMessage {
+    width: 90%;
+    height: auto;
+    left: 5%;
   }
 }
 /*# sourceMappingURL=styles.css.map */

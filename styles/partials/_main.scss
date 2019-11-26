@@ -6,10 +6,6 @@
     justify-content: space-evenly;
 }
 
-main .wrapper {
-  position: relative;
-}
-
 form {
     width: 100%;
     fieldset {
@@ -20,9 +16,9 @@ form {
         border: none;
         label {
             text-align: center;
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: $primeryColor;
-            padding: 2% 0;
+            padding: 0 0 1% 0;
         }
         input[type="search"],
         select, 
@@ -68,6 +64,7 @@ form {
             text-align: center;
             color: $primeryColor;
             padding: 0 10%;
+            margin: 1% auto;
         }
         .finalSubmit {
             height: 60%;
@@ -78,6 +75,7 @@ form {
         .flexInputs {
             display: flex;
             width: 100%;
+            margin-bottom: 1%;
             div {
                 width: 50%;
                 display: flex;
@@ -98,7 +96,7 @@ form {
     button.submit{
         font-size: 1.5rem;
         border-radius: 20px;
-        margin-top: 50px;
+        margin-top: 2%;
         padding: 10px 50px;
         transition: 0.35s;
         background: $primeryColor;
@@ -170,14 +168,17 @@ form {
 
 .errorMessage {
   position: absolute;
-  top: 25%;
+  top: 50%;
+  left: 15%;
+  transform: translateY(-50%);
   height: 25%;
-  width: 80%;
+  width: 70%;
   background-color: black;
   padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 10px solid white;
   button {
     position: absolute;
     top: 5px;
