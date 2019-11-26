@@ -661,7 +661,7 @@ footer p {
     display: none;
   }
   .inputs {
-    height: auto;
+    height: 75vh;
   }
   form fieldset label {
     font-size: 1.6rem;
@@ -718,6 +718,18 @@ footer p {
     width: 90%;
     height: auto;
     left: 5%;
+  }
+}
+
+@media (max-width: 415px) {
+  .inputs {
+    height: 74vh;
+  }
+}
+
+@media (max-width: 320px) {
+  .inputs {
+    height: auto;
   }
 }
 /*# sourceMappingURL=styles.css.map */

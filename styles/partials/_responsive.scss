@@ -45,7 +45,7 @@
         }
     }
     .inputs {
-        height: auto;
+        height: 75vh;
     }
     form {
         fieldset {
@@ -103,5 +103,17 @@
         width: 90%;
         height: auto;
         left: 5%;
+    }
+}
+
+@include mqMobilePlus {
+    .inputs {
+        height: 74vh;
+    }
+}
+
+@include mqMobileSE {
+    .inputs {
+        height: auto;
     }
 }
