@@ -75,8 +75,19 @@ form {
                 padding-top: 0;
             }
         }
-        #route {
-            width: 40%;
+        .flexInputs {
+            display: flex;
+            width: 100%;
+            div {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        #route ,
+        #stop {
+            width: 80%;
             text-align: center;
         }
         #time {
@@ -84,7 +95,7 @@ form {
             text-align: center;
         }
     }
-    fieldset:nth-child(1) > button:nth-child(5) {
+    button.submit{
         font-size: 1.5rem;
         border-radius: 20px;
         margin-top: 50px;

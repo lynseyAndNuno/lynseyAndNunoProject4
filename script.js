@@ -38,10 +38,10 @@ app.getInfo = function (stationSearch) {
         const actuallyARoute = data.stops.filter(function(value) {
             return value.routes.length > 0;
         });
-        // use the filtered array to call the route names
-        actuallyARoute.forEach(function(stop) {
-            app.getRoutes(stop.routes);
-        })
+
+        // use the filtered array to populate stop
+        app.displayStops(actuallyARoute);
+
         // start our event listener to pull departure times!
         app.getTimes(actuallyARoute);
     }).fail(function(error) {
@@ -54,11 +54,31 @@ app.getInfo = function (stationSearch) {
     });
 }
 
+// pull stop info and start event listener for changed selection.
+app.displayStops = function(stops) {
+    stops.forEach(function(stop) {
+        const htmlToAppend = `<option>${stop.name}</option>`;
+        $('#stop').append(htmlToAppend);
+    });
+    let stopName = $('#stop').val();
+    app.getRoutes(stops[0]);
+
+    $('#stop').on("change", function() {
+        stopName = $(`#stop`).val();
+        const thisStop = stops.filter(function(value) {
+            return value.name === stopName;            
+        })
+        // console.log(thisStop[0])
+        app.getRoutes(thisStop[0]);
+    })
+}
+
 // pulls route name from stops data object and appends to drop down menu
-app.getRoutes = function(routes) {
-    routes.forEach(function(route) {
+app.getRoutes = function(stop) {
+    $('#route').html("");
+    stop.routes.forEach(function(route) {
         const htmlToAppend = `<option>${route.name}</option>`;
-        $('select').append(htmlToAppend);
+        $('#route').append(htmlToAppend);
     })
 }
 

@@ -450,8 +450,30 @@ form fieldset .finalSubmit fieldset:nth-child(1) > label:nth-child(1) {
   padding-top: 0;
 }
 
-form fieldset #route {
-  width: 40%;
+form fieldset .flexInputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+form fieldset .flexInputs div {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+form fieldset #route,
+form fieldset #stop {
+  width: 80%;
   text-align: center;
 }
 
@@ -460,7 +482,7 @@ form fieldset #time {
   text-align: center;
 }
 
-form fieldset:nth-child(1) > button:nth-child(5) {
+form button.submit {
   font-size: 1.5rem;
   border-radius: 20px;
   margin-top: 50px;
@@ -470,7 +492,7 @@ form fieldset:nth-child(1) > button:nth-child(5) {
   background: #f2efe8;
 }
 
-form fieldset:nth-child(1) > button:nth-child(5):hover {
+form button.submit:hover {
   color: #f2efe8;
   background: #990000;
 }
