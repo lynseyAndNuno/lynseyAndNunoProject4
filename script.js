@@ -87,15 +87,13 @@ app.getTimes = function(stops) {
     $('form.finalSubmit').on("submit", function(e){
         e.preventDefault();
         const time = parseInt($('#time').val(), 10) * app.weatherMultiplier;
-        const routeTaken = $('#route').val();
-        stops.forEach(function(stop) {
-            stop.routes.forEach(function(route){
-                if (route.name === routeTaken) {
-                    const nextDepartures = route.stop_times;
-                    app.displayInfo(nextDepartures, time);
-                }
-            })
+        const selectedStop = stops.filter(function(value) {
+            return value.name === $('#stop').val();
         })
+        const routeTaken = selectedStop[0].routes.filter(function(value) {
+            return value.name === $('#route').val();
+        })
+        app.displayInfo(routeTaken[0].stop_times, time);
     })
 }
 
@@ -127,9 +125,8 @@ app.weatherMultiplier = app.getWeather();
 
 // Display data on the page
 app.displayInfo = function(times, commuteTime) {
-    //first let's make a section to put our results in!
-    $('main').append('<div class="wrapper"><section class="results"></section></div>');
-    $('.results').append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
+    $('.results').removeClass("hidden");
+    $('.results').html("").append(`<div class="departures"><p>The next departure time is:</p><ul></ul></div>`);
     // we only want the next 3 departure times, not everything
     // hence: for loop, rather than forEach.
     for(let i = 0; i <= 2; i++) {
