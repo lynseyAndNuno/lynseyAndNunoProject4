@@ -3,7 +3,7 @@
 
 ## Am I Gonna be Late?
 
-Am I Gonna be Late was created to help you see if your daily commute will take the same time as usual or you will be running late, this is based on the weather and the TTC running on schedule.
+Am I Gonna be Late was created to help you see if your daily commute will take the same time as usual or you will be running late, this is based on the weather and the TTC running on schedule
 
 ### Build with
 [vscode](https://code.visualstudio.com/) </br>
