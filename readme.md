@@ -1,4 +1,4 @@
-<img src="/AmILate/assets/amILate.png">
+<img src="./assets/amILate.png">
 
 
 ## Am I Gonna be Late?
