@@ -21,6 +21,7 @@ app.getWeather = function() {
             appid: app.weatherKey
         }
     }).then(function(data) {
+        // console.log(data);
         const weatherType = data.weather[0].main;
         if (weatherType.includes("rain")) {
             timeMultiplier = 1.5;
@@ -59,6 +60,7 @@ app.getInfo = function (stationSearch) {
             reqUrl: `${app.baseUrl}/${stationSearch}.json`,
         }
     }).then(function(data) {
+        console.log(data);
         // return data lists 'stops' that don't actually have routes
         // we don't want those stops. .filter() to the rescue!
         const actuallyARoute = data.stops.filter(function(value) {
